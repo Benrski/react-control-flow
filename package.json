@@ -3,6 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/react-control-flow.js",
+      "require": "./dist/react-control-flow.umd.cjs"
+    }
+  },
+  "main": "./dist/react-control-flow.umd.cjs",
+  "module": "./dist/react-control-flow.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite",
