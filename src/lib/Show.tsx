@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { isFunction } from '../utils/isFunction';
 
 export interface ShowProps<T> {
   when: T | undefined | null;
@@ -9,7 +8,7 @@ export interface ShowProps<T> {
 
 export function Show<T>({ when, children, fallback }: ShowProps<T>) {
   if (when) {
-    return <>{isFunction(children) ? children(when) : children}</>;
+    return <>{typeof children === 'function' ? children(when) : children}</>;
   }
 
   return <>{fallback}</>;
