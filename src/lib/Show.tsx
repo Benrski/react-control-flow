@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 export interface ShowProps<T> {
-  when: T | undefined | null;
+  when: T | undefined | null | false;
   fallback?: ReactNode;
   children: ReactNode | ((item: NonNullable<T>) => ReactNode);
 }
