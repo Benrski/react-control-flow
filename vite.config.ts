@@ -8,14 +8,12 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/lib/index.ts'),
       name: 'ReactControlFlow',
-      fileName: 'react-control-flow',
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react'],
       output: {
         globals: {
           react: 'React',
-          'react-dom': 'ReactDOM',
         },
       },
     },
