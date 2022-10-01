@@ -11,9 +11,12 @@ export default defineConfig({
       name: 'ReactControlFlow',
     },
     rollupOptions: {
-      external: ['react'],
+      external: ['react', 'react-dom'],
       output: {
-        globals: { react: 'React' },
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
       },
     },
   },
