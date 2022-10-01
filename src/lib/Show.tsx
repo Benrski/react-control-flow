@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 export interface ShowProps<T> {
   when: T | undefined | null | false;
@@ -6,10 +6,18 @@ export interface ShowProps<T> {
   children: ReactNode | ((item: NonNullable<T>) => ReactNode);
 }
 
-export function Show<T>({ when, children, fallback }: ShowProps<T>) {
+export function Show<T>({
+  when,
+  children,
+  fallback,
+}: ShowProps<T>): ReactElement | null {
   if (when) {
     return <>{typeof children === 'function' ? children(when) : children}</>;
   }
 
-  return <>{fallback}</>;
+  if (fallback) {
+    return <>{fallback}</>;
+  }
+
+  return null;
 }
