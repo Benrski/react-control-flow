@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export interface ForProps<T> {
   each: readonly T[] | undefined | null | false;
@@ -6,11 +6,7 @@ export interface ForProps<T> {
   children: (item: T, index: number) => ReactNode;
 }
 
-export function For<T>({
-  each,
-  children,
-  fallback,
-}: ForProps<T>): ReactElement | null {
+export function For<T>({ each, children, fallback }: ForProps<T>) {
   if (each && each.length) {
     return <>{each.map(children)}</>;
   }

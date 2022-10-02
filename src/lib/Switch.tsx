@@ -1,4 +1,4 @@
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Children, isValidElement } from 'react';
 
 export interface MatchProps<T> {
@@ -6,10 +6,7 @@ export interface MatchProps<T> {
   children: ReactNode | ((item: NonNullable<T>) => ReactNode);
 }
 
-export function Match<T>({
-  when,
-  children,
-}: MatchProps<T>): ReactElement | null {
+export function Match<T>({ when, children }: MatchProps<T>) {
   if (when) {
     return <>{typeof children === 'function' ? children(when) : children}</>;
   }
@@ -22,10 +19,7 @@ export interface SwitchProps {
   children: ReactNode;
 }
 
-export function Switch({
-  children,
-  fallback,
-}: SwitchProps): ReactElement | null {
+export function Switch({ children, fallback }: SwitchProps) {
   const match = Children.toArray(children).find(
     (child) => isValidElement(child) && child.type === Match && child.props.when
   );
