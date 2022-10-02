@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react';
 
-export interface ForProps<T, U extends ReactNode> {
+export interface ForProps<T> {
   each: readonly T[] | undefined | null | false;
   fallback?: ReactNode;
-  children: (item: T, index: number) => U;
+  children: (item: T, index: number) => ReactNode;
 }
 
-export function For<T, U extends ReactNode>({
-  each,
-  children,
-  fallback,
-}: ForProps<T, U>) {
+export function For<T>({ each, children, fallback }: ForProps<T>) {
   if (each && each.length) {
     return <>{each.map(children)}</>;
   }
 
-  return <>{fallback}</>;
+  if (fallback) {
+    return <>{fallback}</>;
+  }
+
+  return null;
 }

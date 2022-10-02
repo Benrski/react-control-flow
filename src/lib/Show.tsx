@@ -11,5 +11,9 @@ export function Show<T>({ when, children, fallback }: ShowProps<T>) {
     return <>{typeof children === 'function' ? children(when) : children}</>;
   }
 
-  return <>{fallback}</>;
+  if (fallback) {
+    return <>{fallback}</>;
+  }
+
+  return null;
 }
