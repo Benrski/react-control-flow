@@ -6,7 +6,9 @@ export interface MatchProps<T> {
   children: ReactNode | ((item: NonNullable<T>) => ReactNode);
 }
 
-export function Match<T>({ when, children }: MatchProps<T>) {
+export function Match<T>(props: MatchProps<T>) {
+  const { when, children } = props;
+
   if (when) {
     return <>{typeof children === 'function' ? children(when) : children}</>;
   }
@@ -15,11 +17,13 @@ export function Match<T>({ when, children }: MatchProps<T>) {
 }
 
 export interface SwitchProps {
-  fallback?: ReactNode;
   children: ReactNode;
+  fallback?: ReactNode;
 }
 
-export function Switch({ children, fallback }: SwitchProps) {
+export function Switch(props: SwitchProps) {
+  const { children, fallback } = props;
+
   const match = Children.toArray(children).find(
     (child) => isValidElement(child) && child.type === Match && child.props.when
   );
